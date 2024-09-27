@@ -1,14 +1,8 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { authSlice } from '@features/auth';
-import { userSlice } from '@entities/user';
-import { eventsSlice } from '@features/events';
 import { mainApi } from './api/mainApi.ts';
 
 const rootReducer = combineReducers({
     [mainApi.reducerPath]: mainApi.reducer,
-    auth: authSlice.reducer,
-    user: userSlice.reducer,
-    events: eventsSlice.reducer,
 });
 
 export const store = configureStore({
