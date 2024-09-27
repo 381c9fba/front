@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90vw;
   background-color: var(--white);
   flex-direction: column;
   gap: 20px;
@@ -17,6 +16,7 @@
     background-color: #FF645F;
     cursor: pointer;
     transition: 0.3s all ease;
+
     &:hover {
       filter: brightness(90%);
     }
@@ -76,7 +76,6 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      cursor: pointer;
       gap: 10px;
       padding: 100px 30px;
       border: 3px dashed #E1E5EA;
@@ -84,6 +83,10 @@
       background-color: var(--white);
       width: 100%;
       border-radius: 20px;
+
+      &.dragOver {
+        background-color: #e0f7fa; // Highlight color when dragging over
+      }
 
 
       & button {
