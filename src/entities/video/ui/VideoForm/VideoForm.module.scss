@@ -7,20 +7,36 @@
   gap: 20px;
   border-radius: 20px;
 
-
-  & .submitButton {
+  & .btn {
     font: var(--paragraph-4);
     font-size: 20px;
     color: var(--white);
-    padding: 20px;
+    padding: 10px 20px;
     background-color: #FF645F;
     cursor: pointer;
+    width: 240px;
     transition: 0.3s all ease;
 
     &:hover {
       filter: brightness(90%);
     }
   }
+
+  & .submitButton {
+    font: var(--paragraph-4);
+    font-size: 20px;
+    color: var(--white);
+    padding: 10px 20px;
+    background-color: #FF645F;
+    cursor: pointer;
+    width: 240px;
+    transition: 0.3s all ease;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
 
   & .text {
     text-align: center;
@@ -53,18 +69,24 @@
       gap: 20px;
     }
 
-    & .urlInput {
-      padding: 10px 20px;
-      border: 1px solid #E1E5EA;
-      border-radius: 10px;
-      font: var(--paragraph-1);
-      font-size: 20px;
-      color: var(--text);
-      background-color: inherit;
-      max-width: 70%;
+    & .url {
+      display: flex;
+      align-items: center;
+      gap: 20px;
 
-      &:focus {
-        outline: none;
+      & .urlInput {
+        width: 100%;
+        padding: 10px 20px;
+        border: 1px solid #E1E5EA;
+        border-radius: 10px;
+        font: var(--paragraph-1);
+        font-size: 20px;
+        color: var(--text);
+        background-color: inherit;
+
+        &:focus {
+          outline: none;
+        }
       }
     }
 
@@ -88,20 +110,6 @@
         background-color: #e0f7fa; // Highlight color when dragging over
       }
 
-
-      & button {
-        font: var(--paragraph-4);
-        font-size: 20px;
-        color: var(--white);
-        padding: 20px;
-        background-color: #FF645F;
-        cursor: pointer;
-        transition: 0.3s all ease;
-
-        &:hover {
-          filter: brightness(90%);
-        }
-      }
 
       & svg {
         fill: var(--text);;
