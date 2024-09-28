@@ -1,9 +1,14 @@
 import cls from './VideoForm.module.scss';
 import { useRef, useState } from 'react';
+import { usePostUrlMutation, usePostVideoMutation } from '@entities/video';
 
 export const VideoForm = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState<File | null>(null);
+    const [url, setUrl] = useState<string>('');
+
+    const [postVideo] = usePostVideoMutation();
+    const [postUrl] = usePostUrlMutation();
 
     const handleClick = () => {
         if (fileInputRef.current) {
@@ -40,13 +45,27 @@ export const VideoForm = () => {
         }
     };
 
+    const handleSubmit = async () => {
+        try {
+            if (file) {
+                await postVideo({ video: file }).unwrap();
+            } else if (url) {
+                await postUrl({ url }).unwrap();
+            } else {
+                alert('Выберите способ доставки');
+            }
+        } catch (error) {
+            console.error('Error submitting:', error);
+        }
+    };
+
     return (
         <div className={cls.wrapper}>
             {file ? (
                 <div className={cls.video}>
                     <video src={URL.createObjectURL(file)} controls></video>
                     <p className={cls.text}>{file.name}</p>
-                    <button className={cls.submitButton} type="button">
+                    <button className={cls.submitButton} type="button" onClick={handleSubmit}>
                         Отправить
                     </button>
                 </div>
@@ -66,17 +85,23 @@ export const VideoForm = () => {
                             onDragLeave={handleDragLeave}
                             onDrop={handleDrop}
                         >
-                            <button type="button">Выбрать видео</button>
-                            <p className={cls.text}>
-                                Выберите файлы
-                                или перетащите их сюда
-                            </p>
+                            <button className={cls.btn} type="button">
+                                Выбрать видео
+                            </button>
+                            <p className={cls.text}>Выберите файлы или перетащите их сюда</p>
                         </div>
-                        <input
-                            className={cls.urlInput}
-                            placeholder="URL"
-                            type="text"
-                        />
+                        <div className={cls.url}>
+                            <input
+                                className={cls.urlInput}
+                                placeholder="URL"
+                                type="text"
+                                value={url}
+                                onChange={(e) => setUrl(e.target.value)}
+                            />
+                            <button className={cls.btn} type="button" onClick={handleSubmit}>
+                                Отправить
+                            </button>
+                        </div>
                     </div>
                 </form>
             )}
