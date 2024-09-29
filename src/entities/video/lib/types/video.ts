@@ -1,5 +1,5 @@
 export interface VideoResponse {
-    id: string | number;
+    id: string;
 }
 
 export interface UploadVideoRequest {
@@ -9,3 +9,4 @@ export interface UploadVideoRequest {
 export interface UploadUrlRequest {
     url: string;
 }
+

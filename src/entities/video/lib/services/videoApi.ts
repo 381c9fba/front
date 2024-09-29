@@ -25,7 +25,24 @@ export const videoApi = mainApi.injectEndpoints({
                 },
             }),
         }),
+        getStatus: builder.query<{ status: string }, { id: string }>({
+            query: ({ id }) => ({
+                method: 'GET',
+                url: `/video/${id}`,
+            }),
+        }),
+        getTags: builder.query<{ tags: string[] }, { id: string }>({
+            query: ({ id }) => ({
+                method: 'GET',
+                url: `/video/tags/${id}`,
+            }),
+        }),
     }),
 });
 
-export const { usePostVideoMutation, usePostUrlMutation } = videoApi;
+export const {
+    usePostVideoMutation,
+    usePostUrlMutation,
+    useLazyGetStatusQuery,
+    useLazyGetTagsQuery,
+} = videoApi;

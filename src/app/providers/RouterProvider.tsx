@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { MainPage } from '@pages/ui';
+import { MainPage, VideoPage } from '@pages/ui';
 import { Wrapper } from '@widgets/ui';
 
 export const router = createBrowserRouter([
@@ -10,6 +10,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <MainPage />,
+            },
+            {
+                path: ':id',
+                element: <VideoPage />,
             },
         ],
     },

@@ -1,20 +1,30 @@
 import cls from './VideoForm.module.scss';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePostUrlMutation, usePostVideoMutation } from '@entities/video';
+import { useNavigate } from 'react-router-dom';
 
 export const VideoForm = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState<File | null>(null);
     const [url, setUrl] = useState<string>('');
-
-    const [postVideo] = usePostVideoMutation();
-    const [postUrl] = usePostUrlMutation();
+    const navigate = useNavigate();
+    const [postVideo, { data: videoData }] = usePostVideoMutation();
+    const [postUrl, { data: urlData }] = usePostUrlMutation();
 
     const handleClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
     };
+
+    useEffect(() => {
+        if (videoData) {
+            navigate(videoData.id);
+        }
+        if (urlData) {
+            navigate(urlData.id);
+        }
+    }, [videoData, urlData]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -70,7 +80,8 @@ export const VideoForm = () => {
                     </button>
                 </div>
             ) : (
-                <form className={cls.form}>
+                <form
+                    className={cls.form}>
                     <div className={cls.fileWrapper}>
                         <input
                             ref={fileInputRef}

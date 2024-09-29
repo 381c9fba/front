@@ -21,7 +21,7 @@ export default defineConfig({
             '@widgets': '/src/widgets',
 
 
-            '@features': '/src/features',
+            '@features': '/src/services',
 
             '@entities': '/src/entities',
 
